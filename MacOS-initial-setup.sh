@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Homebrew casks to install
-CASKS=("kitty" "krisp" "microsoft-teams" "microsoft-office" "visual-studio-code" "zoom" "foxit-pdf-editor" "sqlpro-studio" "intune-company-portal")
+CASKS=("alfred" "kitty" "krisp" "microsoft-teams" "microsoft-office" "visual-studio-code" "zoom" "foxit-pdf-editor" "sqlpro-studio" "intune-company-portal")
 ROSETTA_CASKS=("pgadmin4")
 # Homebrew packages to install
-HBPKGS=("postgresql@14" "wget" "pyenv")
+HBPKGS=("postgresql@14" "wget" "pyenv" "imagemagick")
 
 get_response() {
     unset INPUT
