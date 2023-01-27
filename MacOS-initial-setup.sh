@@ -25,6 +25,9 @@ else
         # Add homebrew to the path
         echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ${HOME}.zprofile
         eval "$(/opt/homebrew/bin/brew shellenv)"
+    else
+        echo "Can't proceed without Homebrew. Exiting."
+        exit 1
     fi
 fi
 
