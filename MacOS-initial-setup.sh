@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Homebrew casks to install
-CASKS=("vlc" "alfred" "kitty" "krisp" "microsoft-teams" "microsoft-office" "visual-studio-code" "zoom" "foxit-pdf-editor" "sqlpro-studio" "intune-company-portal")
+CASKS=("dotnet-sdk" "vlc" "alfred" "kitty" "krisp" "microsoft-teams" "microsoft-office" "visual-studio-code" "zoom" "foxit-pdf-editor" "sqlpro-studio" "intune-company-portal")
 ROSETTA_CASKS=("pgadmin4")
 # Homebrew packages to install
 HBPKGS=("postgresql@14" "wget" "pyenv" "imagemagick")
