@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Homebrew casks to install
-CASKS=("dotnet-sdk" "vlc" "alfred" "kitty" "krisp" "microsoft-teams" "microsoft-office" "visual-studio-code" "zoom" "foxit-pdf-editor" "sqlpro-studio" "intune-company-portal")
+CASKS=("kgleason/duo-device-health/duo-device-health" "microsoft-remote-desktop" "dotnet-sdk" "vlc" "alfred" "kitty" "krisp" "microsoft-teams" "microsoft-office" "visual-studio-code" "zoom" "foxit-pdf-editor" "sqlpro-studio" "intune-company-portal")
 ROSETTA_CASKS=("pgadmin4")
 # Homebrew packages to install
 HBPKGS=("postgresql@14" "wget" "pyenv" "imagemagick")
@@ -45,7 +45,7 @@ for CASK in ${CASKS[*]}; do
 done
 
 for CASK in ${ROSETTA_CASKS[*]}; do
-    if get_response "About to install ${CASK}."; then
+    if get_response "About to install ${CASK}. Which may require installing rosetta"; then
         # Make sure rosetta is installed before moving forward
         [ -e /usr/libexec/rosetta ] || sudo softwareupdate --install-rosetta
         brew install --cask ${CASK}
@@ -56,16 +56,7 @@ for PKG in ${HBPKGS[*]}; do
     get_response "About to install ${PKG}." && brew install ${PKG}
 done
 
-if get_response "About to install Duo Device Health"; then
-    # Download the Duo Device Health pkg
-    curl -o /tmp/DuoDeviceHealth.pkg https://dl.duosecurity.com/DuoDeviceHealth-latest.pkg
-
-    # Install the Duo Device Health pkg
-    sudo installer -pkg /tmp/Desktop/DuoDeviceHealth.pkg -target /Applications/
-fi
-
 echo "Some additional steps to take: "
 echo "1. Install tailscale."
 echo "2. Use pyenv to install some python versions."
 echo "3. Log in to foxit."
-echo "4. Log in to SQL Pro Studio."
