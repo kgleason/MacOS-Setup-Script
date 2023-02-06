@@ -1,10 +1,11 @@
 #!/bin/bash
 
 # Homebrew casks to install
-CASKS=("kgleason/duo-device-health/duo-device-health" "microsoft-remote-desktop" "dotnet-sdk" "vlc" "alfred" "kitty" "krisp" "microsoft-teams" "microsoft-office" "visual-studio-code" "zoom" "foxit-pdf-editor" "sqlpro-studio" "intune-company-portal")
+CASKS=("postman" "heroku" "duo-device-health" "microsoft-remote-desktop" "dotnet-sdk" "vlc" "alfred" "kitty" "krisp" "microsoft-teams" "microsoft-office" "visual-studio-code" "zoom" "foxit-pdf-editor" "sqlpro-studio" "intune-company-portal")
 ROSETTA_CASKS=("pgadmin4")
 # Homebrew packages to install
 HBPKGS=("postgresql@14" "wget" "pyenv" "imagemagick")
+TAPS=("kgleason/duo-device-health" "heroku/brew")
 
 get_response() {
     unset INPUT
@@ -25,6 +26,11 @@ else
         # Add homebrew to the path
         echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ${HOME}.zprofile
         eval "$(/opt/homebrew/bin/brew shellenv)"
+
+        echo "Homebrew installed. Adding some taps."
+        for TAP in ${TAPS[*]}; do
+            brew tap ${TAP}
+        done
     else
         echo "Can't proceed without Homebrew. Exiting."
         exit 1
