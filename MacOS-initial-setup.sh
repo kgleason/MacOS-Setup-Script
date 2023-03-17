@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Homebrew casks to install
-CASKS=("postman" "heroku" "duo-device-health" "microsoft-remote-desktop" "dotnet-sdk" "vlc" "alfred" "kitty" "krisp" "microsoft-teams" "microsoft-office" "visual-studio-code" "zoom" "foxit-pdf-editor" "sqlpro-studio" "intune-company-portal")
-ROSETTA_CASKS=("pgadmin4")
+CASKS=("postman" "heroku" "microsoft-remote-desktop" "dotnet-sdk" "vlc" "alfred" "kitty" "krisp" "microsoft-teams" "microsoft-office" "visual-studio-code" "zoom" "foxit-pdf-editor" "sqlpro-studio" "intune-company-portal" "microsoft-edge" "tailscale")
+ROSETTA_CASKS=("pgadmin4" "duo-device-health")
 # Homebrew packages to install
 HBPKGS=("postgresql@14" "wget" "pyenv" "imagemagick")
 TAPS=("kgleason/duo-device-health" "heroku/brew")
@@ -16,16 +16,22 @@ get_response() {
     [ $(echo ${INPUT} | tr "[:lower:]" "[:upper:]") = 'Y' ] || return 1 && return 0
 }
 
+if grep ohmy ${HOME}/.zshrc; then
+    :
+else
+    if get_response "About to install Oh My ZSH."; then
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+        cp ./zshrc ${HOME}/.zshrc
+        source ~/.zshrc
+    fi
+fi
+
 if which -s brew; then 
     :
 else
     # Install Homebrew
     if get_response "About to install homebrew."; then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-        # Add homebrew to the path
-        echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ${HOME}.zprofile
-        eval "$(/opt/homebrew/bin/brew shellenv)"
 
         echo "Homebrew installed. Adding some taps."
         for TAP in ${TAPS[*]}; do
@@ -34,15 +40,6 @@ else
     else
         echo "Can't proceed without Homebrew. Exiting."
         exit 1
-    fi
-fi
-
-if grep ohmy ${HOME}/.zshrc; then
-    :
-else
-    if get_response "About to install Oh My ZSH."; then
-        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-        source ~/.zshrc
     fi
 fi
 
@@ -62,7 +59,8 @@ for PKG in ${HBPKGS[*]}; do
     get_response "About to install ${PKG}." && brew install ${PKG}
 done
 
+cp config ${HOME}/.config
+
 echo "Some additional steps to take: "
-echo "1. Install tailscale."
-echo "2. Use pyenv to install some python versions."
-echo "3. Log in to foxit."
+echo "- Use pyenv to install some python versions."
+echo "- Log in to foxit."
