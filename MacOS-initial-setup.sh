@@ -4,7 +4,7 @@
 CASKS=("postman" "heroku" "microsoft-remote-desktop" "dotnet-sdk" "vlc" "alfred" "kitty" "krisp" "microsoft-teams" "microsoft-office" "visual-studio-code" "zoom" "foxit-pdf-editor" "sqlpro-studio" "intune-company-portal" "microsoft-edge" "tailscale")
 ROSETTA_CASKS=("pgadmin4" "duo-device-health")
 # Homebrew packages to install
-HBPKGS=("postgresql@14" "wget" "pyenv" "imagemagick")
+HBPKGS=("postgresql@14" "wget" "pyenv" "imagemagick" "coreutils")
 TAPS=("kgleason/duo-device-health" "heroku/brew")
 
 get_response() {
